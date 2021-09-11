@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@netlify/functions": "^0.7.2",
     "sparkline-svg": "^1.0.4"
   }
 }
