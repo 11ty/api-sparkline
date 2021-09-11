@@ -2,12 +2,12 @@ const { builder } = require("@netlify/functions");
 const s = require("sparkline-svg");
 const Sparkline = s.default;
 
-function sparkline(values = [], color = "#f00", width = 400, height = 80) {
-  let line = new Sparkline(values);
+function sparkline(values, width, height, color = "rgba(0,0,0,1)") {
+  let line = new Sparkline(values || []);
   line.setViewBoxHeight(height);
   line.setViewBoxWidth(width);
   line.setStrokeWidth(2);
-  line.setStroke(color || "rgba(0,0,0,1)");
+  line.setStroke(color);
   return line.outerHTML;
 }
 
@@ -17,6 +17,9 @@ async function handler(event, context) {
   let pathSplit = event.path.split("/").filter(entry => !!entry);
   console.log( pathSplit );
   let [rawWidth, rawHeight, rawValues, color] = pathSplit;
+
+  rawWidth = rawWidth || 400;
+  rawHeight = rawHeight || 100;
 
   let values = (rawValues || "").split(",");
   let width = parseInt(rawWidth, 10);
@@ -30,7 +33,7 @@ async function handler(event, context) {
       throw new Error(`Invalid \`values\`: ${rawValues}`);
     }
 
-    let output = sparkline(values, color, width, height);
+    let output = sparkline(values, width, height, color);
 
     return {
       statusCode: 200,
