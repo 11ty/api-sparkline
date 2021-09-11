@@ -63,4 +63,4 @@ async function handler(event, context) {
   }
 }
 
-exports.handler = handler;
+exports.handler = builder(handler);
