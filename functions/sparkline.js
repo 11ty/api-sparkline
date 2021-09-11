@@ -14,9 +14,10 @@ function sparkline(values = [], color = "#f00", width = 400, height = 80) {
 async function handler(event, context) {
   // /:width/:height/:values/:color?/
   let pathSplit = event.path.split("/").filter(entry => !!entry);
+  console.log( pathSplit );
   let [rawWidth, rawHeight, rawValues, color] = pathSplit;
 
-  let values = rawValues.split(",");
+  let values = (rawValues || "").split(",");
   let width = parseInt(rawWidth, 10);
   let height = parseInt(rawHeight, 10);
 
