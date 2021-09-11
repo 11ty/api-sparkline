@@ -2,7 +2,8 @@
 directory = "functions"
 
 [[redirects]]
+# Do not push this redirect to a versioned branch!
 from = "/*"
-to = "/.netlify/functions/sparkline"
-status = 200
+to = "https://v1.sparkline.11ty.dev/:splat"
+status = 301
 force = true
