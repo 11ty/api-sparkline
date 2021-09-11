@@ -13,7 +13,7 @@ function sparkline(values, width, height, color = "rgba(0,0,0,1)") {
 
 async function handler(event, context) {
   // /:width/:height/:values/:color?/
-  console.log( event.path );
+  console.dir( event );
   let pathSplit = event.path.split("/").filter(entry => !!entry);
   console.log( pathSplit );
   let [rawWidth, rawHeight, rawValues, color] = pathSplit;
