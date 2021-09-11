@@ -14,9 +14,8 @@ function sparkline(values, width, height, color = "rgba(0,0,0,1)") {
 //1,4,10,3,2,40,5,6,20,40,5,1,10,100,5,90
 async function handler(event, context) {
   // /{width}x{height}/{values}/{color?}/
-  console.dir( event );
+  console.log( event.path );
   let pathSplit = event.path.split("/").filter(entry => !!entry);
-  console.log( pathSplit );
   let [rawDimensions, rawValues, color] = pathSplit;
 
   let [rawWidth, rawHeight] = rawDimensions.split("x");
