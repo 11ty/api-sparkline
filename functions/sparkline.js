@@ -11,15 +11,18 @@ function sparkline(values, width, height, color = "rgba(0,0,0,1)") {
   return line.outerHTML;
 }
 
+//1,4,10,3,2,40,5,6,20,40,5,1,10,100,5,90
 async function handler(event, context) {
-  // /:width/:height/:values/:color?/
+  // /{width}x{height}/{values}/{color?}/
   console.dir( event );
   let pathSplit = event.path.split("/").filter(entry => !!entry);
   console.log( pathSplit );
-  let [rawWidth, rawHeight, rawValues, color] = pathSplit;
+  let [rawDimensions, rawValues, color] = pathSplit;
 
-  rawWidth = rawWidth || 400;
-  rawHeight = rawHeight || 100;
+  let [rawWidth, rawHeight] = rawDimensions.split("x");
+
+  rawWidth = rawWidth || 300;
+  rawHeight = rawHeight || 60;
 
   let values = (rawValues || "").split(",");
   let width = parseInt(rawWidth, 10);
