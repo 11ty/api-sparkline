@@ -22,6 +22,7 @@ async function handler(event, context) {
 
   rawWidth = rawWidth || 300;
   rawHeight = rawHeight || 60;
+  color = decodeURIComponent(color);
 
   let values = (rawValues || "").split(",");
   let width = parseInt(rawWidth, 10);
