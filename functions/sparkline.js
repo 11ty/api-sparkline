@@ -2,9 +2,7 @@ const { builder } = require("@netlify/functions");
 const s = require("sparkline-svg");
 const Sparkline = s.default;
 
-function sparkline(values, color = "#f00", width=400, height=80) {
-  let values = [1,4,10,3,2,40,5,6,20,40,5,1,10,100,5,90];
-
+function sparkline(values = [], color = "#f00", width = 400, height = 80) {
   let line = new Sparkline(values);
   line.setViewBoxHeight(height);
   line.setViewBoxWidth(width);
@@ -14,7 +12,7 @@ function sparkline(values, color = "#f00", width=400, height=80) {
 }
 
 async function handler(event, context) {
-  // e.g. /https%3A%2F%2Fwww.11ty.dev%2F/small/1:1/smaller/
+  // /:width/:height/:values/:color?/
   let pathSplit = event.path.split("/").filter(entry => !!entry);
   let [rawWidth, rawHeight, rawValues, color] = pathSplit;
 
