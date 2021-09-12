@@ -2,6 +2,8 @@
 
 A runtime service to generate sparkline SVG images.
 
+<img src="https://v1.sparkline.11ty.dev/120x30/41,25,9,12,10,6,12,14,19,17,23,30,36,21,25/%2394b388/" width="120" height="30" alt="Sparkline representing frequency of posts written from 2007 to 2021">
+
 <!-- ## Deploy
 
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/11ty/api-sparkline
