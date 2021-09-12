@@ -6,12 +6,12 @@ function sparkline(values, width, height, color = "rgba(0,0,0,1)") {
   let line = new Sparkline(values || []);
   line.setViewBoxHeight(height);
   line.setViewBoxWidth(width);
-  line.setStrokeWidth(2);
+  // TODO handle 0 getting cut off for larger stroke widths
+  line.setStrokeWidth(1);
   line.setStroke(color);
   return line.outerHTML;
 }
 
-//1,4,10,3,2,40,5,6,20,40,5,1,10,100,5,90
 async function handler(event, context) {
   // /{width}x{height}/{values}/{color?}/
   console.log( event.path );
@@ -49,10 +49,10 @@ async function handler(event, context) {
   } catch (error) {
     console.log("Error", error);
 
+    // Returning a 400 means that Firefox won’t display the image but it’s important so the
+    // On-demand Builder doesn’t cache the error
     return {
-      // We need to return 200 here or Firefox won’t display the image
-      // HOWEVER a 200 means that if it times out on the first attempt it will stay the default image until the next build.
-      statusCode: 200,
+      statusCode: 400, // Bad Request/Bad Syntax
       headers: {
         "content-type": "image/svg+xml",
         "x-error-message": error.message
