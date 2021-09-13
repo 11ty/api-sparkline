@@ -2,13 +2,17 @@ const { builder } = require("@netlify/functions");
 const s = require("sparkline-svg");
 const Sparkline = s.default;
 
-function sparkline(values, width, height, color = "rgba(0,0,0,1)") {
+function sparkline(values, width, height, color) {
   let line = new Sparkline(values || []);
   line.setViewBoxHeight(height);
   line.setViewBoxWidth(width);
-  // TODO handle 0 getting cut off for larger stroke widths
+
+  // TODO handle lines at edge getting cut off for larger stroke widths
   line.setStrokeWidth(1);
-  line.setStroke(color);
+
+  if(color) {
+    line.setStroke(color || "#000000");
+  }
   return line.outerHTML;
 }
 
@@ -22,7 +26,10 @@ async function handler(event, context) {
 
   rawWidth = rawWidth || 300;
   rawHeight = rawHeight || 60;
-  color = decodeURIComponent(color);
+
+  if(color) {
+    color = decodeURIComponent(color);
+  }
 
   let values = (rawValues || "").split(",");
   let width = parseInt(rawWidth, 10);
