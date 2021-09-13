@@ -21,19 +21,20 @@ async function handler(event, context) {
   console.log( event.path );
   let pathSplit = event.path.split("/").filter(entry => !!entry);
   let [rawDimensions, rawValues, color] = pathSplit;
-
-  let [rawWidth, rawHeight] = rawDimensions.split("x");
-
-  rawWidth = rawWidth || 300;
-  rawHeight = rawHeight || 60;
-
-  if(color) {
-    color = decodeURIComponent(color);
+  
+  let dimensions = [300, 60];
+  if(rawDimensions && rawDimensions.indexOf("x") > -1) {
+    dimensions = rawDimensions.split("x");
   }
 
+  let [rawWidth, rawHeight] = dimensions;
   let values = (rawValues || "").split(",");
   let width = parseInt(rawWidth, 10);
   let height = parseInt(rawHeight, 10);
+  
+  if(color) {
+    color = decodeURIComponent(color);
+  }
 
   try {
     if(isNaN(width) || isNaN(height)) {
