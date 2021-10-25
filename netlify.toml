@@ -3,6 +3,6 @@ directory = "functions"
 
 [[redirects]]
 from = "/*"
-to = "/.netlify/functions/sparkline/:splat"
+to = "/.netlify/builders/sparkline/:splat"
 status = 200
 force = true
