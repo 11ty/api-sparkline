@@ -1,3 +1,5 @@
+<p align="center"><img src="https://www.11ty.dev/img/logo-github.svg" width="200" height="200" alt="11ty Logo"></p>
+
 # Sparkline API
 
 A runtime service to generate sparkline SVG images.
