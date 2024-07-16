@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx vercel dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@netlify/functions": "^0.7.2",
     "sparkline-svg": "^1.0.4"
+  },
+  "devDependencies": {
+    "vercel": "^35.0.1"
   }
 }

@@ -1,8 +1,0 @@
-[functions]
-directory = "functions"
-
-[[redirects]]
-from = "/*"
-to = "/.netlify/builders/sparkline/:splat"
-status = 200
-force = true

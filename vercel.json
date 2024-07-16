@@ -1,0 +1,15 @@
+{
+	"functions": {
+		"api/sparkline.js": {
+			"includeFiles": ""
+		}
+	},
+	"rewrites": [
+		{ "source": "/", "destination": "/api/sparkline/" },
+		{ "source": "/:dims*", "destination": "/api/sparkline/" },
+		{ "source": "/:dims/", "destination": "/api/sparkline/" },
+		{ "source": "/:dims/:values/", "destination": "/api/sparkline/" },
+		{ "source": "/:path/:values/:colors/", "destination": "/api/sparkline/" }
+	],
+	"trailingSlash": true
+}
